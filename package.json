@@ -1,0 +1,21 @@
+{
+  "name": "mess_api",
+  "version": "1.0.0",
+  "description": "rest api for messapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab test -c -m 10000"
+  },
+  "author": "oted",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^8.0.0",
+    "lab": "^5.1.1",
+    "mongoose": "^3.8.21",
+    "mongoose-times": "^0.1.0"
+  },
+  "devDependencies": {
+    "code": "^1.2.1",
+    "joi": "^5.0.2"
+  }
+}
