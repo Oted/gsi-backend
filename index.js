@@ -5,9 +5,11 @@ var Router      = require('./lib/router'),
     routeWrapper,
     server;
 
+process.env.MONGO_URL = 
+
 //callback of db connection
 dbWrapper = new DbWrapper('mongodb://localhost/messapp', function() {
-    console.log('Connectied to DB!');         
+    console.log('Connectied to DB!'); 
     
     server = new Hapi.Server();
     server.connection({
@@ -16,7 +18,7 @@ dbWrapper = new DbWrapper('mongodb://localhost/messapp', function() {
     });
 
     //start da server
-    server.start(function () {
+    server.start(function() {
         console.log('Server running at:', server.info.uri);
         routeWrapper = new Router(server, dbWrapper);
     });
