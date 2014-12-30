@@ -13,7 +13,7 @@ dbWrapper = new DbWrapper(process.env.MONGO_URL, function() {
     
     server = new Hapi.Server();
     server.connection({
-        'host': '188.166.45.196',
+        'host': 'localhost',
         'port': 3000
     });
 
