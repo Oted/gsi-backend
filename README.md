@@ -10,16 +10,14 @@ Messapp-backend api
         "last" : "optional, get items with a sort time greater",
         "first" : "optional, get items with a sort time less than"
     },
-    "response": {
-        [{
-            "_hash": "c0e7ec652aedac7b8b79d9555a77ada3",
-            "_sort": "1420465320873",
-            "title": "Tornadoes: Some people just don't give a shit.",
-            "type": "gif",
-            "data": "i.imgur.com/mdsO8zd.gif",
-            "score": -7
-        }]
-    }
+    "response": [{
+        "_hash": "c0e7ec652aedac7b8b79d9555a77ada3",
+        "_sort": "1420465320873",
+        "title": "Tornadoes: Some people just don't give a shit.",
+        "type": "gif",
+        "data": "i.imgur.com/mdsO8zd.gif",
+        "score": -7
+    }]
 }
 ```
 ###- **[<code>POST</code> api/items]**
