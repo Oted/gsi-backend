@@ -3,9 +3,10 @@ Messapp-backend api
 #####Good to know : 
 ```json 
 {
-    "item_types"        : ['youtube', 'img', 'gif', 'gifv', 'soundcloud', 'vimeo', 'vine', 'text', 'video', 'instagram', 'sound', 'other'],
-    "addjective_types"  : ['arty', 'funny', 'inspiring', 'creepy', 'beautiful', 'cute', 'crazy', 'offensive', 'boring', 'uggly', 'disturbing']
+    "item_types"        : ["youtube", "img", "gif", "gifv", "soundcloud", "vimeo", "vine", "text", "video", "instagram", "sound", "other"],
+    "addjective_types"  : ["arty", "funny", "inspiring", "creepy", "beautiful", "cute", "crazy", "offensive", "boring", "uggly", "disturbing"]
 }
+```
 
 ###- **[<code>GET</code> api/items]**
 #####Get items from the database sorted on their _sort time
