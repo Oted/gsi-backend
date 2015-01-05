@@ -88,7 +88,7 @@ Messapp-backend api
     }
 }
 ```
-####- **[<code>POST</code> api/novote/{hash}]**
+###- **[<code>POST</code> api/novote/{hash}]**
 #####Create a new rating with a 0 value, addjective is optional
 ```json 
 {
