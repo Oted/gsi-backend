@@ -3,8 +3,8 @@ Messapp-backend api
 #####Good to know : 
 ```json 
 {
-    "item_types"        : ["youtube", "img", "gif", "gifv", "soundcloud", "vimeo", "vine", "text", "video", "instagram", "sound", "other"],
-    "addjective_types"  : ["arty", "funny", "inspiring", "creepy", "beautiful", "cute", "crazy", "offensive", "boring", "uggly", "disturbing"]
+    "item_types"                : ["youtube", "img", "gif", "gifv", "soundcloud", "vimeo", "vine", "text", "video", "instagram", "sound", "other"],
+    "example_addjective_types"  : ["arty", "funny", "inspiring", "creepy", "beautiful", "cute", "crazy", "offensive", "boring", "uggly", "disturbing"]
 }
 ```
 
@@ -116,6 +116,27 @@ Messapp-backend api
     },
     "query" : {
         "addjective" : "optional, the addjective of the item, see the lib/dbWrapper for the addjectives available"
+    }
+}
+```
+###- **[<code>GET</code> api/addjectives]**
+#####Get an object of equally many shuffeld positive as nagative addjectives that can be used when voting
+```json
+{
+    "query" : {
+        "amount" : "optional, amount of positives and negatives"
+    },
+    "ex.result" : {
+        "positives": [
+            "inspiring",
+            "beautiful",
+            "creative"
+        ],
+        "negatives": [
+            "boring",
+            "disturbing",
+            "annoying"
+        ]
     }
 }
 ```
