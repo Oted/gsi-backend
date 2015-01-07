@@ -91,7 +91,7 @@ Messapp-backend api
         "hash" : "required, the _hash of the item"
     },
     "query" : {
-        "addjective" : "optional, the addjective of the item, see the lib/dbWrapper for the addjectives available"
+        "addjective" : "optional, the addjective of the item, should be one of the queried in GET api/addjectives"
     }
 }
 ```
@@ -103,7 +103,7 @@ Messapp-backend api
         "hash" : "required, the _hash of the item"
     },
     "query" : {
-        "addjective" : "optional, the addjective of the item, see the lib/dbWrapper for the addjectives available"
+        "addjective" : "optional, the addjective of the item, should be one of the queried in GET api/addjectives"
     }
 }
 ```
@@ -115,7 +115,7 @@ Messapp-backend api
         "hash" : "required, the _hash of the item"
     },
     "query" : {
-        "addjective" : "optional, the addjective of the item, see the lib/dbWrapper for the addjectives available"
+        "addjective" : "optional, the addjective of the item, should be one of the queried in GET api/addjectives"
     }
 }
 ```
