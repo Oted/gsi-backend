@@ -15,7 +15,7 @@ dbWrapper = new DbWrapper(process.env.MONGO_URL, function() {
     server.connection({
         'host': '188.166.45.196',
         'port': 3000,
-	'routes': { cors: true }
+	    'routes': { cors: true }
     });
 
     //start da server

@@ -72,17 +72,29 @@ Messapp-backend api
     "query": {
         "hash" : "required, the _hash of the item"
     },
-    "response": {
-        "ratings" : [{
-            "lastUpdated": "2015-01-05T14:55:42.100Z",
-            "created": "2015-01-05T14:55:42.100Z",
-            "_hash": "c0e7ec652aedac7b8b79d9555a77ada3",
-            "value": -1,
-            "expression": "creepy"
-        }]
-    }
+    "response": [{
+        "lastUpdated": "2015-01-05T14:55:42.100Z",
+        "created": "2015-01-05T14:55:42.100Z",
+        "_hash": "c0e7ec652aedac7b8b79d9555a77ada3",
+        "value": -1,
+        "expression": "creepy"
+    }]
 }
 ```
+###- **[<code>GET</code> api/bestratings]**
+#####Get all ratings for a specific items _hash
+```json 
+{
+    "query": {
+        "amount" : "optional, the best rated items hash, max amount is 25 and default to 5"
+    },
+    "response": [{
+        "_hash": "c0e7ec652aedac7b8b79d9555a77ada3"
+    }]
+}
+```
+#
+
 ###- **[<code>POST</code> api/upvote/{hash}]**
 #####Create a new rating with a +1 value, addjective is optional
 ```json 
