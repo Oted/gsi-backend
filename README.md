@@ -15,7 +15,8 @@ Messapp-backend api
     "query": {
         "amount" : "optional, defaults to 20, max(99)",
         "last" : "optional, get items with a sort time greater",
-        "first" : "optional, get items with a sort time less than"
+        "first" : "optional, get items with a sort time less than",
+        "types" : "optional, array of types to get"
     },
     "response": [{
         "_hash": "c0e7ec652aedac7b8b79d9555a77ada3",
@@ -86,7 +87,8 @@ Messapp-backend api
 ```json 
 {
     "query": {
-        "amount" : "optional, the best rated items hash, max amount is 25 and default to 5"
+        "amount" : "optional, the best rated items hash, max amount is 25 and default to 5",
+        "types" : "optional, array of types to get"
     },
     "response": [{
         "_hash": "c0e7ec652aedac7b8b79d9555a77ada3"
@@ -150,5 +152,39 @@ Messapp-backend api
             "annoying"
         ]
     }
+}
+```
+###- **[<code>GET</code> api/info]**
+#####Get an object with information about contents
+```json
+{
+    "query" : {},
+    "ex.result" :{
+        "types": [
+            "youtube",
+            "img",
+            "other"
+        ],
+        "adjectives": {
+            "positives": [
+                "creative",
+                "fascinating"
+            ],
+            "negatives": [
+                "boring",
+                "confusing"
+            ]
+        },
+        "counts": [
+            {
+                "_id": "img",
+                "count": 3247
+            },
+            {
+                "_id": "youtube",
+                "count": 1662
+            }
+       ]
+    } 
 }
 ```
