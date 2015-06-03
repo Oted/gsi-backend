@@ -5,7 +5,7 @@ var Router      = require('./lib/router'),
     routeWrapper,
     server;
 
-process.env.MONGO_URL = 'mongodb://localhost:27017/messapp';
+process.env.MONGO_URL = 'mongodb://188.166.45.196:27017/messapp';
 
 //callback of db connection
 dbWrapper = new DbWrapper(process.env.MONGO_URL, function() {
@@ -13,7 +13,7 @@ dbWrapper = new DbWrapper(process.env.MONGO_URL, function() {
     
     server = new Hapi.Server();
     server.connection({
-        'host': '188.166.45.196',
+        'host': 'localhost',
         'port': 3000,
 	    'routes': { cors: true }
     });
