@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "async": "^0.9.0",
+    "good": "^6.1.4",
+    "good-console": "^5.0.2",
+    "good-file": "^5.0.1",
     "hapi": "^8.6.1",
     "lab": "^5.1.1",
     "mongoose": "^4.0.5",

@@ -7,28 +7,55 @@ var Router      = require('./lib/router'),
 
 process.env.MONGO_URL = 'mongodb://188.166.45.196:27017/messapp';
 
-//callback of db connection
-dbWrapper = new DbWrapper(process.env.MONGO_URL, function() {
-    console.log('Connectied to DB!');
-    
-    server = new Hapi.Server();
+/**
+ *  Start and set up the server config
+ */
+var startServer = function() {
+    var server = new Hapi.Server();
+
+    //connecttt
     server.connection({
         'host': 'localhost',
         'port': 3000,
 	    'routes': { cors: true }
     });
 
+    //set cookies
     server.state('session', {
         ttl: 24 * 60 * 60 * 1000 * 730,     // Two years lol
         encoding: 'base64json'
     });
 
-    //start da server
-    server.start(function() {
-        console.log('Server running at:', server.info.uri);
-        routeWrapper = new Router(server, dbWrapper);
+    //set up logging
+    var options = {
+        opsInterval: 60000,
+        reporters: [{
+            reporter: require('good-console'),
+            events: { log: '*', response: '*' }
+        }, {
+            reporter: require('good-file'),
+            events: { ops: '*' },
+            config: './logs/lol_logs'
+        }]
+    };
+
+    server.register({
+        register: require('good'),
+        options: options
+    }, function (err) {
+        if (err) {
+            return console.error(err);
+        } 
+
+        server.start(function () {
+            console.info('Server started at ' + server.info.uri);
+            routeWrapper = new Router(server, dbWrapper);
+        });
     });
-});
+};
+
+//callback of db connection
+dbWrapper = new DbWrapper(process.env.MONGO_URL, startServer);
 
 //on exit, close db
 process.on('exit', function(code) {
