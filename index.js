@@ -18,6 +18,11 @@ dbWrapper = new DbWrapper(process.env.MONGO_URL, function() {
 	    'routes': { cors: true }
     });
 
+    server.state('session', {
+        ttl: 24 * 60 * 60 * 1000 * 730,     // Two years lol
+        encoding: 'base64json'
+    });
+
     //start da server
     server.start(function() {
         console.log('Server running at:', server.info.uri);
