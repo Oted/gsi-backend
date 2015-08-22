@@ -1,7 +1,8 @@
 var Hapi        = require('hapi');
 var DbWrapper   = require('./lib/dbwrapper');
 var Router      = require('./lib/router'),
-    dbWrapper,
+    
+var dbWrapper,
     routeWrapper,
     server;
 
@@ -16,8 +17,7 @@ var startServer = function() {
     //connecttt
     server.connection({
         'host': 'localhost',
-        'port': 3000,
-	    'routes': { cors: true }
+        'port': 3000
     });
 
     //set cookies
