@@ -1,6 +1,6 @@
 var Hapi        = require('hapi');
 var DbWrapper   = require('./lib/dbwrapper');
-var Router      = require('./lib/router'),
+var Router      = require('./lib/router');
     
 var dbWrapper,
     routeWrapper,
