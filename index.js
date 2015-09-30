@@ -6,7 +6,7 @@ var dbWrapper,
     routeWrapper,
     server;
 
-process.env.MONGO_URL = 'mongodb://188.166.45.196:27017/messapp';
+process.env.MONGO_URL = 'mongodb://localhost:27017/GSI';
 
 /**
  *  Start and set up the server config
@@ -17,7 +17,8 @@ var startServer = function() {
     //connecttt
     server.connection({
         'host': 'localhost',
-        'port': 3000
+        'port': 3000,
+	'routes': { cors: true }
     });
 
     //set cookies
