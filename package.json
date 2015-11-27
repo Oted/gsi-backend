@@ -15,6 +15,7 @@
     "good-file": "^5.0.1",
     "hapi": "^8.6.1",
     "lab": "^5.1.1",
+    "memory-cache": "^0.1.4",
     "mongoose": "^4.0.5",
     "mongoose-times": "^0.1.0",
     "node-uuid": "^1.4.3",

@@ -1,6 +1,7 @@
 var Hapi        = require('hapi');
 var DbWrapper   = require('./lib/dbwrapper');
 var Router      = require('./lib/router');
+var Cache       = require('memory-cache');
     
 var dbWrapper,
     routeWrapper,
@@ -48,15 +49,15 @@ var startServer = function() {
             return console.error(err);
         } 
 
-        server.start(function () {
+        return server.start(function () {
             console.info('Server started at ' + server.info.uri);
-            routeWrapper = new Router(server, dbWrapper);
+            routeWrapper = new Router(Cache, server, dbWrapper);
         });
     });
 };
 
 //callback of db connection
-dbWrapper = new DbWrapper(process.env.MONGO_URL, startServer);
+dbWrapper = new DbWrapper(Cache, process.env.MONGO_URL, startServer);
 
 //on exit, close db
 process.on('exit', function(code) {
