@@ -2,37 +2,13 @@
     {
         "_hash": "1",
         "_sort": "1440257814840",
-	"data" : "http://s9.postimg.org/yow4xfofj/tut1.png",
+	    "data" : "http://s9.postimg.org/yow4xfofj/tut1.png",
         "dislikes": 0,
         "likes": 0,
         "score": 0,
         "source": "http://s9.postimg.org/yow4xfofj/tut1.png",
         "source_type": "tutorial",
-        "title": "",
-        "type": "img"
-    },
-    {
-        "_hash": "2",
-        "_sort": "1440257814840",
-	"data" : "http://s29.postimg.org/ifc1sntef/tut6.png",
-        "dislikes": 0,
-        "likes": 0,
-        "score": 0,
-        "source": "http://s29.postimg.org/ifc1sntef/tut6.png",
-        "source_type": "tutorial",
-        "title": "",
-        "type": "img"
-    },
-    {
-        "_hash": "9",
-        "_sort": "1440257814840",
-	    "data" : "http://s1.postimg.org/638hsl07z/tut4_1.png",
-        "dislikes": 0,
-        "likes": 0,
-        "score": 0,
-        "source": "http://s1.postimg.org/638hsl07z/tut4_1.png",
-        "source_type": "tutorial",
-        "title": "",
+        "title": "Welcome!",
         "type": "img"
     }
 ]
