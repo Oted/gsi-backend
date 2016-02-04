@@ -1,30 +1,46 @@
 var Hapi        = require('hapi');
-var DbWrapper   = require('./lib/dbwrapper');
+var Models      = require('gsi-models');
 var Router      = require('./lib/router');
-var Cache       = require('memory-cache');
-    
-var dbWrapper,
-    routeWrapper,
-    server;
 
-process.env.MONGO_URL = 'mongodb://localhost:27017/GSI';
+require('dotenv').load();
+
+var Database,
+    Server;
+
+//set connection to local
+//process.env.MONGO_URL = 'mongodb://localhost:27017/GSI';
 
 /**
- *  Start and set up the server config
+ *  Connect to db then
+ *  Start and set up the Server config
+ */
+Models.connect(function(err) {
+    if (err) {
+        throw err;
+    }
+
+    console.log('Conneced to mongo!');
+    Database = require('./lib/database');
+
+    return startServer();
+});
+
+/**
+ *  Starts the happiiii Server
  */
 var startServer = function() {
-    var server = new Hapi.Server();
+    var Server = new Hapi.Server();
 
     //connecttt
-    server.connection({
+    Server.connection({
         'host': 'localhost',
         'port': 3000,
-	'routes': { cors: true }
+	    'routes': { cors: true }
     });
 
     //set cookies
-    server.state('session', {
-        ttl: 24 * 60 * 60 * 1000 * 730,     // Two years lol
+    Server.state('session', {
+        ttl: 24 * 60 * 60 * 1000 * 730, // Two years lol
         encoding: 'base64json'
     });
 
@@ -41,7 +57,7 @@ var startServer = function() {
         }]
     };
 
-    server.register({
+    return Server.register({
         register: require('good'),
         options: options
     }, function (err) {
@@ -49,19 +65,9 @@ var startServer = function() {
             return console.error(err);
         } 
 
-        return server.start(function () {
-            console.info('Server started at ' + server.info.uri);
-            routeWrapper = new Router(Cache, server, dbWrapper);
+        return Server.start(function () {
+            console.info('Server started at ' + Server.info.uri);
+            new Router(Server, Models);
         });
     });
 };
-
-//callback of db connection
-dbWrapper = new DbWrapper(Cache, process.env.MONGO_URL, startServer);
-
-//on exit, close db
-process.on('exit', function(code) {
-    DbWrapper.close();
-});
-
-module.exports = server;
