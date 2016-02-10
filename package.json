@@ -1,7 +1,7 @@
 {
-  "name": "mess_api",
+  "name": "gsi-backend",
   "version": "1.0.0",
-  "description": "rest api for messapp",
+  "description": "rest api for gsi",
   "main": "index.js",
   "scripts": {
     "test": "lab test -c -m 10000"
@@ -15,9 +15,10 @@
     "good-console": "^5.0.2",
     "good-file": "^5.0.1",
     "gsi-models": "git@github.com:Oted/gsi-models.git",
-    "hapi": "^8.6.1",
+    "hapi": "^8.0.0",
     "lab": "^5.1.1",
     "memory-cache": "^0.1.4",
+    "mustache": "^2.2.1",
     "node-uuid": "^1.4.3",
     "request": "^2.51.0",
     "validator": "^3.27.0"
