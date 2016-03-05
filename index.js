@@ -63,7 +63,7 @@ var startServer = function() {
     }, function (err) {
         if (err) {
             return console.error(err);
-        } 
+        }
 
         return Server.start(function () {
             console.info('Server started at ' + Server.info.uri);
