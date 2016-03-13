@@ -64,7 +64,7 @@ var startServer = function() {
 
         //Check and set the session
         Server.ext('onPreHandler', (request, response) => {
-            if (request.yar.get('session')) {
+            if (request.yar.get('session') || request.headers['x-forwarded-for'] === process.env.SCRAPER_IP) {
                 return response.continue();
             }
 
