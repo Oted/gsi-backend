@@ -1,8 +1,13 @@
+'use strict';
+
 var Hapi        = require('hapi');
 var Models      = require('gsi-models');
 var Router      = require('./lib/router');
+var Uuid        = require('node-uuid');
 
 require('dotenv').load();
+
+var internals = {};
 
 var Database,
     Server;
@@ -35,37 +40,52 @@ var startServer = function() {
     Server.connection({
         'host': 'localhost',
         'port': 3000,
-	    'routes': { cors: true }
+	    'routes': {
+            cors: true
+        }
     });
 
-    //set cookies
-    Server.state('session', {
-        ttl: 24 * 60 * 60 * 1000 * 730, // Two years lol
-        encoding: 'base64json'
-    });
-
-    //set up logging
-    var options = {
-        opsInterval: 60000,
-        reporters: [{
-            reporter: require('good-console'),
-            events: { log: '*', response: '*' }
-        }, {
-            reporter: require('good-file'),
-            events: { ops: '*' },
-            config: './logs/lol_logs'
-        }]
-    };
-
-    return Server.register({
-        register: require('good'),
-        options: options
-    }, function (err) {
+    return Server.register([
+        {
+            register: require('yar'),
+            options : {
+                name : 'session',
+                cookieOptions: {
+                    password: process.env.COOKIE_PASSWORD,
+                    isSecure: false,
+                    ttl: 1000 * 3600 * 24 * 3650
+                }
+            }
+        }
+    ], function (err) {
         if (err) {
-            return console.error(err);
+            throw err;
         }
 
-        return Server.start(function () {
+        //Check and set the session
+        Server.ext('onPreHandler', (request, response) => {
+            if (request.yar.get('session')) {
+                return response.continue();
+            }
+
+            const session = Uuid.v4();
+
+            console.log('Wooo new user ' + session);
+            request.yar.set('session', {
+                'token' : session
+            });
+
+            //create a user async
+            Models.model['user'].create({
+                _token : session,
+                user_agent : request.headers['user-agent'] || 'none',
+                ip : request.headers['x-forwarded-for'] || 'none'
+            });
+
+            return response.continue();
+        });
+
+       return Server.start(function () {
             console.info('Server started at ' + Server.info.uri);
             new Router(Server, Models);
         });
