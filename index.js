@@ -70,7 +70,6 @@ var startServer = function() {
 
             const session = Uuid.v4();
 
-            console.log('Wooo new user ' + session);
             request.yar.set('session', {
                 'token' : session
             });
@@ -80,6 +79,12 @@ var startServer = function() {
                 _token : session,
                 user_agent : request.headers['user-agent'] || 'none',
                 ip : request.headers['x-forwarded-for'] || 'none'
+            }, function(err, newUser) {
+                if (err) {
+                    console.log('Could not create new user', err);
+                }
+
+                console.log('New user created!', newUser.session);
             });
 
             return response.continue();
