@@ -12,9 +12,6 @@ var internals = {};
 var Database,
     Server;
 
-//set connection to local
-//process.env.MONGO_URL = 'mongodb://localhost:27017/GSI';
-
 /**
  *  Connect to db then
  *  Start and set up the Server config
@@ -56,6 +53,9 @@ var startServer = function() {
                     ttl: 1000 * 3600 * 24 * 3650
                 }
             }
+        },
+        {
+            register : require('inert')
         }
     ], function (err) {
         if (err) {

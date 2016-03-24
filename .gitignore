@@ -30,6 +30,7 @@ build/Release
 .lock-wscript
 
 node_modules/*
+gsi-react
 backup/*
 logs/*
 

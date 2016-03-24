@@ -15,6 +15,7 @@
     "good-console": "^5.3.1",
     "gsi-models": "git@github.com:Oted/gsi-models.git",
     "hapi": "^13.1.0",
+    "inert": "^3.2.0",
     "memory-cache": "^0.1.4",
     "mustache": "^2.2.1",
     "node-uuid": "^1.4.3",
