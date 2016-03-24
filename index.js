@@ -52,7 +52,7 @@ var startServer = function() {
                 name : 'session',
                 cookieOptions: {
                     password: process.env.COOKIE_PASSWORD,
-                    isSecure: false,
+                    isSecure: true,
                     ttl: 1000 * 3600 * 24 * 3650
                 }
             }
@@ -75,17 +75,17 @@ var startServer = function() {
             });
 
             //create a user async
-            Models.model['user'].create({
-                _token : session,
-                user_agent : request.headers['user-agent'] || 'none',
-                ip : request.headers['x-forwarded-for'] || 'none'
-            }, function(err, newUser) {
-                if (err) {
-                    console.log('Could not create new user', err);
-                }
+            // Models.model['user'].create({
+                // _token : session,
+                // user_agent : request.headers['user-agent'] || 'none',
+                // ip : request.headers['x-forwarded-for'] || 'none'
+            // }, function(err, newUser) {
+                // if (err) {
+                    // console.log('Could not create new user', err);
+                // }
 
-                console.log('New user created!', newUser.session);
-            });
+                // console.log('New user created!', newUser._token);
+            // });
 
             return response.continue();
         });
