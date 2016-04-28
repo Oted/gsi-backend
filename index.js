@@ -36,10 +36,7 @@ var startServer = function() {
     //connecttt
     Server.connection({
         'host': 'localhost',
-        'port': 3000,
-	    'routes': {
-            cors: true
-        }
+        'port': 3000
     });
 
     return Server.register([
@@ -49,8 +46,9 @@ var startServer = function() {
                 name : 'session',
                 cookieOptions: {
                     password: process.env.COOKIE_PASSWORD,
-                    isSecure: true,
-                    ttl: 1000 * 3600 * 24 * 3650
+                    isSecure: false,
+                    ttl: 1000 * 3600 * 24 * 3650,
+                    clearInvalid: true
                 }
             }
         },
@@ -75,17 +73,17 @@ var startServer = function() {
             });
 
             //create a user async
-            // Models.model['user'].create({
-                // _token : session,
-                // user_agent : request.headers['user-agent'] || 'none',
-                // ip : request.headers['x-forwarded-for'] || 'none'
-            // }, function(err, newUser) {
-                // if (err) {
-                    // console.log('Could not create new user', err);
-                // }
+            Models.model['user'].create({
+                _token : session,
+                user_agent : request.headers['user-agent'] || 'none',
+                ip : request.headers['x-forwarded-for'] || 'none'
+            }, function(err, newUser) {
+                if (err) {
+                    console.log('Could not create new user', err);
+                }
 
-                // console.log('New user created!', newUser._token);
-            // });
+                console.log('New user created!', newUser._token);
+            });
 
             return response.continue();
         });
