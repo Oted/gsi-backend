@@ -33,11 +33,19 @@ Models.connect(function(err) {
 var startServer = function() {
     var Server = new Hapi.Server();
 
-    //connecttt
-    Server.connection({
+    var serverOptions = {
         'host': 'localhost',
         'port': 3000
-    });
+    };
+
+    if (process.env.NODE_ENV === 'development') {
+        serverOptions.routes = {
+            cors: true
+        }
+    }
+
+    //connecttt
+    Server.connection(serverOptions);
 
     return Server.register([
         {
@@ -46,7 +54,7 @@ var startServer = function() {
                 name : 'session',
                 cookieOptions: {
                     password: process.env.COOKIE_PASSWORD,
-                    isSecure: false,
+                    isSecure: process.env.NODE_ENV !== 'development',
                     ttl: 1000 * 3600 * 24 * 3650,
                     clearInvalid: true
                 }
@@ -73,17 +81,19 @@ var startServer = function() {
             });
 
             //create a user async
-            Models.model['user'].create({
-                _token : session,
-                user_agent : request.headers['user-agent'] || 'none',
-                ip : request.headers['x-forwarded-for'] || 'none'
-            }, function(err, newUser) {
-                if (err) {
-                    console.log('Could not create new user', err);
-                }
+            if (process.env.NODE_ENV !== 'development') {
+                Models.model['user'].create({
+                    _token : session,
+                    user_agent : request.headers['user-agent'] || 'none',
+                    ip : request.headers['x-forwarded-for'] || 'none'
+                }, function(err, newUser) {
+                    if (err) {
+                        console.log('Could not create new user', err);
+                    }
 
-                console.log('New user created!', newUser._token);
-            });
+                    console.log('New user created!', newUser._token);
+                });
+            }
 
             return response.continue();
         });
