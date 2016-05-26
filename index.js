@@ -1,5 +1,3 @@
-'use strict';
-
 var Hapi        = require('hapi');
 var Models      = require('gsi-models');
 var Router      = require('./lib/router');
@@ -69,9 +67,10 @@ var startServer = function() {
 
         //Check and set the session
         Server.ext('onPreHandler', (request, response) => {
-            if (request.yar.get('session-v1') || 
+            if (request.yar.get('session-v1') ||
                 request.headers['x-forwarded-for'] === process.env.SCRAPER_IP ||
                 request.headers['user-agent'].indexOf('SkypeUriPreview') > -1 ||
+                request.headers['user-agent'].indexOf('visionutils/0.2') > -1 ||
                 request.headers['user-agent'].indexOf('Googlebot') > -1 ||
                 request.headers['user-agent'].indexOf('facebookexternalhit') > -1) {
                 return response.continue();
