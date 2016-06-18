@@ -14,7 +14,7 @@
     "good": "^6.6.0",
     "good-console": "^5.3.1",
     "gsi-models": "git@github.com:Oted/gsi-models.git",
-    "hapi": "^13.1.0",
+    "hapi": "^13.4.1",
     "inert": "^3.2.0",
     "memory-cache": "^0.1.4",
     "mustache": "^2.2.1",
