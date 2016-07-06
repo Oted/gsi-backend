@@ -73,6 +73,7 @@ var startServer = function() {
                 request.headers['user-agent'].indexOf('visionutils/0.2') > -1 ||
                 request.headers['user-agent'].indexOf('Googlebot') > -1 ||
                 request.headers['user-agent'].indexOf('facebookexternalhit') > -1) {
+
                 return response.continue();
             }
 
